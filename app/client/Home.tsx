@@ -6,7 +6,7 @@ function Home() {
         <>
 
             <Link to="signup">Signup</Link>
-            <button>Login</button>
+            <Link to="login">Login</Link>
 
 
 

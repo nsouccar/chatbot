@@ -3,7 +3,9 @@ import { route } from "@react-router/dev/routes";
 
 export default [
     route("signup", "client/Signup.tsx"),
-    route("/", "client/home.tsx")
+    route("/", "client/home.tsx"),
+    route("welcome", "client/Welcome.tsx"),
+    route("login", "client/Login.tsx")
 ] satisfies RouteConfig
 
 
