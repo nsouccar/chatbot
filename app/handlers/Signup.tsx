@@ -10,26 +10,35 @@ export async function action({ request }: ActionFunctionArgs) {
     const email = formData.get("email");
     const password = formData.get("password");
 
-    console.log("Signing up:", { name, email, password });
+    //console.log("Signing up:", { name, email, password });
 
-    await auth.api.signUpEmail({
+    const response = await auth.api.signUpEmail({
+        asResponse: true,
+
         body: {
             name: name! as string,
             email: email as string,
             password: password as string
 
         }
+
+
+
+
     })
 
+    return new Response(null, {
+        status: 302,
+        headers: {
+            "Location": "/welcome",
+            "Set-Cookie": response.headers.get("set-cookie")!
+        }
+    });
 
 
 
 
-    // comes from <input name="email" />
 
-    // Do something with these values, e.g. save to DB or call API
-
-    //  return redirect("/contacts"); // navigate after success
 }
 
 
