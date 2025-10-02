@@ -15,7 +15,8 @@ export async function action({ request }: ActionFunctionArgs) {
     const email = formData.get("email");
     const password = formData.get("password");
 
-    //console.log("Signing up:", { name, email, password });
+    console.log("Signing up:", { name, email, password });
+
 
     const response = await auth.api.signUpEmail({
         asResponse: true,
@@ -30,7 +31,14 @@ export async function action({ request }: ActionFunctionArgs) {
 
 
 
-    })
+
+
+    }
+
+
+
+
+    )
 
     return new Response(null, {
         status: 302,
