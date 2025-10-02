@@ -1,0 +1,1 @@
+ALTER TABLE "messages" RENAME COLUMN "userId" TO "user_id";
