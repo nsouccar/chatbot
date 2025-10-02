@@ -12,3 +12,4 @@ export const auth = betterAuth({
         provider: "pg", schema, // or "mysql", "sqlite"
     }),
 });
+

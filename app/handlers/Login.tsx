@@ -20,10 +20,11 @@ export async function action({ request }: ActionFunctionArgs) {
 
     })
 
-    const cookie = response.headers.get("set-cookie")
+    console.log("RESPONSE HEADERS", response.headers)
+    //const cookie = response.headers.get("set-cookie")
 
     //console.log("COOKIE", cookie)
-    return redirect("/welcome")
+    return redirect("/welcome", { headers: response.headers })
 
 
 
