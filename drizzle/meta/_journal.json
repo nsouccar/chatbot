@@ -15,6 +15,13 @@
       "when": 1759417927997,
       "tag": "0001_spicy_tag",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1759431266441,
+      "tag": "0002_left_slapstick",
+      "breakpoints": true
     }
   ]
 }
