@@ -2,18 +2,24 @@
 import type { LoaderFunctionArgs } from "react-router";
 import { useLoaderData } from "react-router"
 import { auth } from "lib/auth";
-import { useState } from "react"
 import { Link } from "react-router"
 import { type ActionFunctionArgs } from "react-router";
 import { redirect } from "react-router";
 import { Form } from "react-router"
 
 
+
 export async function loader({ request, params }: LoaderFunctionArgs) {
 
 
 
+
     const session = await auth.api.getSession({ headers: request.headers })
+
+
+
+    const id = session!.user.id
+
 
 
 

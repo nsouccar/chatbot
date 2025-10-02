@@ -1,12 +1,46 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { useChat } from '@ai-sdk/react';
-import { useLoaderData, useParams, Link } from 'react-router';
+import { useParams, Link, type LoaderFunctionArgs } from 'react-router';
 import { DefaultChatTransport } from "ai";
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { auth } from "lib/auth";
+import { agentLoader } from "@/agents/GetPrompts";
+import { store } from "@/agents/agentPrompts"
+
+
+export async function loader({ request, params }: LoaderFunctionArgs) {
+
+
+
+
+    const session = await auth.api.getSession({ headers: request.headers })
+
+
+
+    const id = session!.user.id
+
+
+    const agents = await agentLoader(id)
+    store.grandma = agents.grandmaPrompt
+    store.bestfriend = agents.bestfriendPrompt
+    store.lifecoach = agents.lifecoachPrompt
+    store.guru = agents.guruPrompt
+
+
+
+
+
+
+
+}
+
+
+
+
+
 
 export default function Chat() {
     const [input, setInput] = useState('');
-    const role = useLoaderData() as { role: string }
     const params = useParams()
 
     const { messages, sendMessage, status } = useChat({
