@@ -10,13 +10,11 @@ import { Form } from "react-router"
 
 
 export async function loader({ request, params }: LoaderFunctionArgs) {
-    console.log("HELLO")
-    console.log("HEADERS", Object.fromEntries(request.headers));
+
 
 
     const session = await auth.api.getSession({ headers: request.headers })
 
-    console.log("SESSION", session);
 
 
     return { user: session?.user }
@@ -25,14 +23,12 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 
 
 export async function action({ request }: ActionFunctionArgs) {
-    console.log("hello")
     await auth.api.signOut({ headers: request.headers });
-    return redirect("/login")
+    return redirect("/")
 }
 
 export default function Welcome() {
     const userData = useLoaderData()
-    console.log("DATA ", userData)
 
 
 
@@ -40,7 +36,12 @@ export default function Welcome() {
     return (
         <>
             <div>Hello, {(userData.user.name)}</div>
-            <Link to="/chatui">Chat</Link>
+            <Link to="/chatui/bestfriend">Bestfriend</Link>
+            <Link to="/chatui/guru">Guru</Link>
+            <Link to="/chatui/grandma">Grandma </Link>
+            <Link to="/chatui/lifecoach">Life Coach</Link>
+
+
             <Form method="post">
                 <button>Sign out</button>
             </Form>
