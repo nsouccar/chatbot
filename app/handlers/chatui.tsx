@@ -18,7 +18,7 @@ export default function Chat() {
 
 
     return (
-        <div className="flex flex-col items-center bg-black h-screen">
+        <div className="fixed flex  flex-col items-center bg-black h-full">
             <div className="flex items-center w-screen border-b-2 h-20">
                 <div className="flex flex-row items-center">
                     <div className="relative font-gossip font-size: text-4xl text-center text-white p-5">lovebot
@@ -35,7 +35,7 @@ export default function Chat() {
 
 
             </div>
-            <div className="w-120 h-250 border-1 m-10">
+            <div className="w-120 h-250 transform scale-80  -translate-y-30 border-1 m-10">
                 <div className="flex flex-row items-center w-120 h-20 border-1">
                     <div className="text-white">Joey</div>
 
@@ -66,7 +66,7 @@ export default function Chat() {
                             }}
                         >
                             <input
-                                className="fixed dark:bg-zinc-900 bottom-0 w-full max-w-md p-2 mb-8 border border-zinc-300 dark:border-zinc-800 rounded shadow-xlb text-white"
+                                className="fixed dark:bg-zinc-900 bottom-0 w-full max-w-md p-2 mb-14 border border-zinc-300 dark:border-zinc-800 rounded shadow-xlb text-white"
                                 value={input}
                                 placeholder="Whats on your mind?"
                                 onChange={e => setInput(e.currentTarget.value)}
