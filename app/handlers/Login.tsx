@@ -13,6 +13,7 @@ import { AnimatePresence } from "motion/react"
 
 
 export async function action({ request }: ActionFunctionArgs) {
+    console.log("HIHIHIHI")
     const formData = await request.formData()
     const response = await auth.api.signInEmail({
         asResponse: true,

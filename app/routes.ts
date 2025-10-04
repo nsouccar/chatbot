@@ -7,6 +7,7 @@ export default [
     route("welcome", "handlers/Welcome.tsx"),
     route("chat/:role", "handlers/chat.ts"),
     route("chatui/:role", "handlers/chatui.tsx"),
+    route("chatstream/:role", "handlers/chatStream.ts")
 ] satisfies RouteConfig
 
 

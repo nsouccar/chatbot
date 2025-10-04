@@ -8,6 +8,15 @@ import { auth } from "lib/auth";
 
 import { Experimental_Agent as Agent } from "ai";
 import { store } from "@/agents/agentPrompts"
+import { elevenlabs } from '@ai-sdk/elevenlabs';
+import { experimental_generateSpeech as generateSpeech } from 'ai';
+import dotenv from "dotenv";
+import { ElevenLabsClient } from "@elevenlabs/elevenlabs-js";
+import { Speaker } from '@elevenlabs/elevenlabs-js/api/resources/dubbing/resources/resource/resources/speaker/client/Client';
+
+
+dotenv.config({ path: "../.env.local" });
+
 
 
 
@@ -22,9 +31,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
 
 
 
-
     const { messages }: { messages: UIMessage[] } = await request.json();
-    // Get the full text of the first message
     const firstMessage = messages[messages.length - 1];
     const textParts = firstMessage.parts
         .filter((p): p is { type: 'text'; text: string } => p.type === 'text')
@@ -115,5 +122,18 @@ export async function action({ request, params }: ActionFunctionArgs) {
         messages: convertToModelMessages(messages)
     });
 
+    const textStream = stream.textStream;
+
+
+
+
+
+
     return stream.toUIMessageStreamResponse();
+
+
 }
+
+
+
+

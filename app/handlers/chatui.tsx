@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { useChat } from '@ai-sdk/react';
-import { useParams, Link, type LoaderFunctionArgs } from 'react-router';
+import { useParams, Link, type LoaderFunctionArgs, useFetcher } from 'react-router';
 import { DefaultChatTransport } from "ai";
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { auth } from "lib/auth";
 import { agentLoader } from "@/agents/GetPrompts";
 import { store } from "@/agents/agentPrompts"
 
+import { useEffect } from "react";
 
 export async function loader({ request, params }: LoaderFunctionArgs) {
 
@@ -41,15 +42,45 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 
 export default function Chat() {
     const [input, setInput] = useState('');
+    const [streamingText, setStreamingText] = useState<string>("");
+
     const params = useParams()
+    const fetcher = useFetcher();
 
     const { messages, sendMessage, status } = useChat({
         transport: new DefaultChatTransport({
             api: `/chat/${params.role}`,
         }),
     });
+    useEffect(() => {
+        async function getData(message: string) {
+            const res = await fetch(`/chatstream/${params.role}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: message }),
+            });
+
+            const audio = new Audio();
+
+            const data = await res.json();
+
+            audio.src = `data:audio/mp3;base64,${data.audio}`;
+            audio.play();
+
+        }
+
+        if (status === "ready" && messages.length > 0) {
+            const lastMessage = messages[messages.length - 1];
+            if (lastMessage.role === "assistant") {
+                const data = getData(lastMessage.parts[1].text)
 
 
+            }
+        }
+
+
+
+    }, [messages, status]);
 
     return (
         <div className="fixed flex  flex-col items-center bg-black h-full">
@@ -78,6 +109,8 @@ export default function Chat() {
                 <ScrollArea className="h-200 w-120 ">
                     <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
                         {messages.map(message => (
+
+
                             <div key={message.id} className="whitespace-pre-wrap text-white ">
                                 {message.role === 'user' ? 'You: ' : `${params.role}: `}
                                 <div className="bg-pink-400 p-5  border rounded-md text-black">
@@ -87,6 +120,7 @@ export default function Chat() {
                                                 return <div key={`${message.id}-${i}`}>{part.text}</div>;
                                         }
                                     })}
+
                                 </div>
 
                             </div>
