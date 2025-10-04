@@ -83,7 +83,7 @@ function Login() {
                                     </div>
                                     <div className="space-y-2">
                                         <Label htmlFor="password">Password</Label>
-                                        <Input id="password" name="password" required />
+                                        <Input id="password" type="password" name="password" required />
                                     </div>
                                     <Button type="submit" className="w-full">
                                         Login

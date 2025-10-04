@@ -27,14 +27,14 @@ export async function action({ request, params }: LoaderFunctionArgs) {
 
 
 
-    let voice_id = "T7eLpgAAhoXHlrNajG8v"
+    let voice_id = "LrxAgHS1pMPAqK7yOgRi"
 
     if (params.role === "guru") {
         voice_id = "1U02n4nD6AdIZ9CjF053"
     } else if (params.role === "grandma") {
-        voice_id = "vFLqXa8bgbofGarf6fZh"
+        voice_id = "DlgwGnU3Co0xgNbFf5U2"
     } else if (params.role === "lifecoach") {
-        voice_id = "mtrellq69YZsNwzUSyXh"
+        voice_id = "DZNb8SfEmwrIT8Zlytxl"
     }
 
 
@@ -42,7 +42,7 @@ export async function action({ request, params }: LoaderFunctionArgs) {
         voice_id, // Voice ID
         {
             text: message,
-            modelId: "eleven_multilingual_v2",
+            modelId: "eleven_turbo_v2_5",
             outputFormat: "mp3_44100_128",
         }
     );
@@ -50,7 +50,6 @@ export async function action({ request, params }: LoaderFunctionArgs) {
 
     const audioBuffer = await new Response(audioResponse).arrayBuffer();
     const base64Audio = Buffer.from(audioBuffer).toString("base64");
-    console.log("AUDIOAUDIO", base64Audio)
 
     return new Response(JSON.stringify({ audio: base64Audio }), {
         headers: { "Content-Type": "application/json" },

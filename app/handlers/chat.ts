@@ -21,7 +21,7 @@ dotenv.config({ path: "../.env.local" });
 
 
 // Allow streaming responses up to 30 seconds
-export const maxDuration = 30;
+export const maxDuration = 5;
 
 
 
@@ -71,7 +71,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
         agent = new Agent({
             model: anthropic('claude-opus-4-20250514'),
             system: store.bestfriend,
-            temperature: 0.5
+            temperature: 0.8
 
 
 
@@ -93,7 +93,8 @@ export async function action({ request, params }: ActionFunctionArgs) {
         agent = new Agent({
             model: anthropic('claude-opus-4-20250514'),
             system: store.lifecoach,
-            temperature: 0.8
+            temperature: 0.8,
+
 
 
 
