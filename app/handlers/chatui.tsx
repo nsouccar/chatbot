@@ -47,11 +47,17 @@ export default function Chat() {
     const params = useParams()
     const fetcher = useFetcher();
 
-    const { messages, sendMessage, status } = useChat({
+    const { messages, sendMessage, status, setMessages } = useChat({
         transport: new DefaultChatTransport({
             api: `/chat/${params.role}`,
         }),
     });
+
+
+
+
+
+
     useEffect(() => {
         async function getData(message: string) {
             const res = await fetch(`/chatstream/${params.role}`, {
@@ -82,6 +88,8 @@ export default function Chat() {
 
     }, [messages, status]);
 
+
+
     return (
         <div className="fixed flex  flex-col items-center bg-black h-full">
             <div className="flex items-center w-screen border-b-2 h-20">
@@ -102,7 +110,7 @@ export default function Chat() {
             </div>
             <div className="w-120 h-250 transform scale-80  -translate-y-30 border-1 m-10">
                 <div className="flex flex-row items-center w-120 h-20 border-1">
-                    <div className="text-white">Joey</div>
+                    <div className="text-white ml-3">{params.role}</div>
 
 
                 </div>

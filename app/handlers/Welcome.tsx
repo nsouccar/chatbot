@@ -77,7 +77,7 @@ export default function Welcome() {
                 <div className="flex gap-x-5">
                     <Link className="font-gossip text-pink-400" to="/chatui/bestfriend">BestfriendBot</Link>
                     <Link className="font-gossip text-pink-400" to="/chatui/guru">GuruBot</Link>
-                    <Link className="font-gossip text-pink-400" to="/chatui/grandma">GrandmaBot</Link>
+                    <Link className="font-gossip text-pink-400" to="/chatui/grandma">PsychicGrandmaBot</Link>
                     <Link className="font-gossip text-pink-400" to="/chatui/lifecoach">ToughLoveLifeCoach</Link>
                 </div>
             </div>
