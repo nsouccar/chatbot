@@ -1,18 +1,14 @@
 import { convertToModelMessages } from 'ai';
 import type { UIMessage } from 'ai';
-import { type ActionFunctionArgs } from 'react-router';
+import { type ActionFunctionArgs, type LoaderFunctionArgs } from 'react-router';
 import { anthropic } from '@ai-sdk/anthropic';
-import { messagesTable } from '../../src/db/messages-schema';
-import { db } from '../../src/db/index';
-import { auth } from "lib/auth";
+import { messagesTable } from '../src/db/messages-schema';
+import { db } from '../src/db/index';
+
 
 import { Experimental_Agent as Agent } from "ai";
-import { store } from "@/agents/agentPrompts"
-import { elevenlabs } from '@ai-sdk/elevenlabs';
-import { experimental_generateSpeech as generateSpeech } from 'ai';
+
 import dotenv from "dotenv";
-import { ElevenLabsClient } from "@elevenlabs/elevenlabs-js";
-import { Speaker } from '@elevenlabs/elevenlabs-js/api/resources/dubbing/resources/resource/resources/speaker/client/Client';
 
 
 dotenv.config({ path: "../.env.local" });
@@ -25,7 +21,11 @@ export const maxDuration = 5;
 
 
 
+
 export async function action({ request, params }: ActionFunctionArgs) {
+    const { store } = await import("./agentPrompts.server");
+    const { auth } = await import("lib/auth.server");
+
 
 
 

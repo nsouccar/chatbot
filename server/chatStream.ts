@@ -3,13 +3,11 @@ import { convertToModelMessages } from 'ai';
 import type { UIMessage } from 'ai';
 import { type LoaderFunctionArgs, type ActionFunctionArgs } from 'react-router';
 import { anthropic } from '@ai-sdk/anthropic';
-import { auth } from "lib/auth";
+
 
 import { Experimental_Agent as Agent } from "ai";
-import { store } from "@/agents/agentPrompts"
 import dotenv from "dotenv";
 import { ElevenLabsClient } from '@elevenlabs/elevenlabs-js';
-
 
 
 dotenv.config({ path: "../.env.local" });

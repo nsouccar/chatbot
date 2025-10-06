@@ -2,18 +2,16 @@
 import { Form, redirect } from "react-router"
 import { type ActionFunctionArgs, Link, useActionData } from "react-router";
 
-import { auth } from "lib/auth";
+import { auth } from "lib/auth.server";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { motion } from "motion/react"
-import { AnimatePresence } from "motion/react"
 
 
 
 export async function action({ request }: ActionFunctionArgs) {
-    console.log("HIHIHIHI")
     const formData = await request.formData()
     const response = await auth.api.signInEmail({
         asResponse: true,
