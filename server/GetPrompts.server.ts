@@ -1,5 +1,5 @@
 
-import { db } from '../../src/db/index';
+import { db } from '../src/db/index';
 import { messagesTable } from 'src/db/messages-schema';
 import { eq, and } from "drizzle-orm";
 

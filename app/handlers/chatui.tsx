@@ -3,14 +3,20 @@ import { useChat } from '@ai-sdk/react';
 import { useParams, Link, type LoaderFunctionArgs, useFetcher } from 'react-router';
 import { DefaultChatTransport } from "ai";
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { auth } from "lib/auth";
-import { agentLoader } from "@/agents/GetPrompts";
-import { store } from "@/agents/agentPrompts"
+
 
 import { useEffect } from "react";
+/*
+
 
 export async function loader({ request, params }: LoaderFunctionArgs) {
+    if (typeof window !== "undefined") {
+        throw new Error("Server-only code cannot run on client");
+    }
 
+    const { auth } = await import("lib/auth.server");
+    const { agentLoader } = await import("server/GetPrompts.server");
+    const { store } = await import("../../server/agentPrompts.server");
 
 
 
@@ -35,7 +41,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 
 }
 
-
+*/
 
 
 
@@ -53,7 +59,15 @@ export default function Chat() {
         }),
     });
 
+    useEffect(() => {
+        async function fetchAgents() {
+            const res = await fetch("/getStuff");
+            const agents = await res.json();
+            console.log(agents);
+        }
 
+        fetchAgents();
+    }, []);
 
 
 
@@ -87,6 +101,8 @@ export default function Chat() {
 
 
     }, [messages, status]);
+
+
 
 
 

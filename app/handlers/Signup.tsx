@@ -1,8 +1,7 @@
 
 import { Form, useActionData } from "react-router"
-import { redirect } from "react-router";
 import type { ActionFunctionArgs } from "react-router";
-import { auth } from "lib/auth";
+import { auth } from "lib/auth.server";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"

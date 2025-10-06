@@ -1,7 +1,7 @@
 
 import { type LoaderFunctionArgs, useActionData } from "react-router";
 import { useLoaderData } from "react-router"
-import { auth } from "lib/auth";
+import { auth } from "lib/auth.server";
 import { Link } from "react-router"
 import { type ActionFunctionArgs } from "react-router";
 import { redirect } from "react-router";
